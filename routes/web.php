@@ -1,33 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/', [HomeController::class,'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/about', [HomeController::class,'about']);
 
-Route::get('/about', function () {
-    return 'about';
-});
+Route::get('/contact', [HomeController::class,'contact']);
 
-Route::get('/contact', function () {
-    return 'about';
-});
-
-Route::get('/about', function () {
-    return 'about';
-});
 
 Route::get('/store/{category?}/{item?}', function ($category=null,$item=null) {
     $category=request('category');
@@ -38,13 +19,5 @@ Route::get('/store/{category?}/{item?}', function ($category=null,$item=null) {
     }
     return 'view all store';
 });
-
-// Route::get('/store', function () {
-//     $category=request('category');
-//     if(isset($category)){
-//         return 'store-category: '.strip_tags($category);
-//     }
-//     return 'store';
-// });
 
 
