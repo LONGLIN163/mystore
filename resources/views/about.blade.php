@@ -16,6 +16,5 @@
 
 @section('scripts')
 <script>
-    alert('about')
 </script>
 @endsection
