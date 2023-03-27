@@ -6,13 +6,25 @@ use Illuminate\Http\Request;
 
 class SofasController extends Controller
 {
+    public static function getData(){
+        return [
+          ['id'=>1, 'name'=>'nice sofa', 'brand'=>'Nice'],
+          ['id'=>2, 'name'=>'sofa haha', 'brand'=>'HAHA'],
+          ['id'=>3, 'name'=>'foldable sofa', 'brand'=>'GOOD'],
+          ['id'=>4, 'name'=>'comfortable sofa', 'brand'=>'Comfort'],
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //GET
-        return view('sofas.index');
+        return view('sofas.index',[
+             'sofas'=> self::getData(),
+             'userInput'=>"<script>alert('haha')</script>"
+            ]
+        );
     }
 
     /**
@@ -21,6 +33,7 @@ class SofasController extends Controller
     public function create()
     {
         //GET, it is about showing the ui about creating things
+
     }
 
     /**
@@ -37,6 +50,15 @@ class SofasController extends Controller
     public function show(string $id)
     {
         //GET, showing the detailed info
+        $sofas=self::getData();
+        $index=array_search($id, array_column($sofas,'id'));
+        if($index===false){
+           abort('404');
+        } 
+
+        return view('sofas.show',[
+            'sofa' => $sofas[$index]
+        ]);
     }
 
     /**

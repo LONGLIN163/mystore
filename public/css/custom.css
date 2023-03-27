@@ -1,3 +1,7 @@
+h1{
+    font-size: 20px;
+    font-weight: 600;
+}
 .p-4{
     padding:1rem;
     color: red;
