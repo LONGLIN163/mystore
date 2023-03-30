@@ -33,10 +33,17 @@ class SofasController extends Controller
 
     // POS T ，this is real creating things
     public function store(Request $request){
+        $request->validate([
+            'sofa-name'=> 'required',
+            'brand'=> 'required',
+            //'year'=> 'required | integer'
+            'year'=> ['required', 'integer']
+        ]);
+
         $sofa=new Sofa();
-        $sofa->name = $request->input('sofa-name');
-        $sofa->brand = $request->input('brand');
-        $sofa->year_made = $request->input('year');
+        $sofa->name = strip_tags($request->input('sofa-name'));
+        $sofa->brand =  strip_tags($request->input('brand'));
+        $sofa->year_made =  strip_tags($request->input('year'));
 
         $sofa->save();
         return redirect()->route('sofas.index');
