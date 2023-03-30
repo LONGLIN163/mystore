@@ -12,7 +12,8 @@
             }}"> {{$sofa['name']}}</a>
         </h1>
         <ul>
-          <li>Made by: {{$sofa['brand']}}</li>
+          <li>Made By: {{$sofa['brand']}}</li>
+          <li>Made On: {{$sofa['year_made']}}</li>
         </ul>
       </div>
     @endforeach

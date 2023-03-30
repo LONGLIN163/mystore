@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Sofa;
 
 class SofasController extends Controller
 {
@@ -14,72 +15,55 @@ class SofasController extends Controller
           ['id'=>4, 'name'=>'comfortable sofa', 'brand'=>'Comfort'],
         ];
     }
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //GET
         return view('sofas.index',[
-             'sofas'=> self::getData(),
+             'sofas'=> Sofa::all(),
              'userInput'=>"<script>alert('haha')</script>"
             ]
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //GET, it is about showing the ui about creating things
+    //GET, it is about showing the ui about creating things
+    public function create(){
+        return view('sofas.create');
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // POST，this is real creating things
+    // POS T ，this is real creating things
+    public function store(Request $request){
+        $sofa=new Sofa();
+        $sofa->name = $request->input('sofa-name');
+        $sofa->brand = $request->input('brand');
+        $sofa->year_made = $request->input('year');
+
+        $sofa->save();
+        return redirect()->route('sofas.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //GET, showing the detailed info
+    //GET, showing the detailed info
+    public function show(string $id){
         $sofas=self::getData();
         $index=array_search($id, array_column($sofas,'id'));
         if($index===false){
            abort('404');
         } 
-
         return view('sofas.show',[
             'sofa' => $sofas[$index]
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //GET, it is about showing the ui about edit things
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //POST, this is real posting things
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
