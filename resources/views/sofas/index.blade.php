@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="max-w-7xl mx-auto p-6 lg:p-8">
+  <div class="text-2xl">
+    <a 
+      style="text-decoration: underline; color:crimson"
+      href="{{route('sofas.create')}}"
+    >create a sofa</a></div>
+  <div>--------------------------------------</div>
   @if (count($sofas))
     @foreach ($sofas as $sofa)
       <div> 
