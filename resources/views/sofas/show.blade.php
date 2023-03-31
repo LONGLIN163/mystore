@@ -7,9 +7,10 @@
     <h1>
         {{$sofa['name']}}:
     </h1>
-    <div>
-        {{$sofa['brand']}}
-    </div>
+    <ul>
+        <li>Made By: {{$sofa['brand']}}</li>
+        <li>Made On: {{$sofa['year_made']}}</li>
+    </ul>
 </div>
 
     

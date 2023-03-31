@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\Sofa;
 
-class SofasController extends Controller
-{
+class SofasController extends Controller{
     public static function getData(){
         return [
           ['id'=>1, 'name'=>'nice sofa', 'brand'=>'Nice'],
@@ -17,7 +16,6 @@ class SofasController extends Controller
     }
     public function index()
     {
-        //GET
         return view('sofas.index',[
              'sofas'=> Sofa::all(),
              'userInput'=>"<script>alert('haha')</script>"
@@ -36,7 +34,6 @@ class SofasController extends Controller
         $request->validate([
             'sofa-name'=> 'required',
             'brand'=> 'required',
-            //'year'=> 'required | integer'
             'year'=> ['required', 'integer']
         ]);
 
@@ -51,24 +48,36 @@ class SofasController extends Controller
 
     //GET, showing the detailed info
     public function show(string $id){
-        $sofas=self::getData();
-        $index=array_search($id, array_column($sofas,'id'));
-        if($index===false){
-           abort('404');
-        } 
         return view('sofas.show',[
-            'sofa' => $sofas[$index]
+            'sofa' => Sofa::findOrFail($id)
         ]);
     }
 
+    //GET, it is about showing the ui about edit things
     public function edit(string $id)
     {
-        //GET, it is about showing the ui about edit things
+        return view('sofas.edit',[
+            'sofa' => Sofa::findOrFail($id)
+        ]);
     }
 
+    //POST-PUT, this is real posting things
     public function update(Request $request, string $id)
     {
-        //POST, this is real posting things
+        $request->validate([
+            'sofa-name'=> 'required',
+            'brand'=> 'required',
+            'year'=> ['required', 'integer']
+        ]);
+
+        $record=Sofa::findOrFail($id);
+
+        $record->name = strip_tags($request->input('sofa-name'));
+        $record->brand =  strip_tags($request->input('brand'));
+        $record->year_made =  strip_tags($request->input('year'));
+
+        $record->save();
+        return redirect()->route('sofas.show', $id );
     }
 
     public function destroy(string $id)

@@ -7,13 +7,19 @@
     @foreach ($sofas as $sofa)
       <div> 
         <h1 class="text-2xl text-blue-600">
-          <a href="{{
-              route('sofas.show',[$sofa['id']])
-            }}"> {{$sofa['name']}}</a>
+          <a 
+             href="{{route('sofas.show',[$sofa['id']])}}"
+             style="text-decoration: underline;"
+          > {{$sofa['name']}}</a>
         </h1>
         <ul>
           <li>Made By: {{$sofa['brand']}}</li>
           <li>Made On: {{$sofa['year_made']}}</li>
+          <li>
+            <a 
+              href="{{route('sofas.edit', [$sofa['id']])}}" 
+              style="text-decoration: underline;"
+            >edit</a></li>
         </ul>
       </div>
     @endforeach
