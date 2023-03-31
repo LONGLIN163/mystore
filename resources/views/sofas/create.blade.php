@@ -13,17 +13,17 @@
 
               <div class="sm:col-span-6">
 
-                <label for="sofa-name" class="block text-sm font-medium leading-6 text-gray-900">name</label>
+                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">name</label>
                 <div class="mt-2">
                   <input 
                     type="text" 
-                    name="sofa-name" 
-                    value="{{old('sofa-name')}}" 
-                    id="sofa-name" 
+                    name="name" 
+                    value="{{old('name')}}" 
+                    id="name" 
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
 
-                @error('sofa-name')
+                @error('name')
                   <div class="form-error">
                      {{$message}}
                   </div>
@@ -47,12 +47,12 @@
               </div>
       
               <div class="sm:col-span-6">
-                <label for="year" class="block text-sm font-medium leading-6 text-gray-900">year</label>
+                <label for="year_made" class="block text-sm font-medium leading-6 text-gray-900">year made</label>
                 <div class="mt-2">
-                  <input type="text" name="year" value="{{old('year')}}" id="year" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  <input type="text" name="year_made" value="{{old('year_made')}}" id="year_made" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
 
-                @error('year')
+                @error('year_made')
                 <div class="form-error">
                    {{$message}}
                 </div>

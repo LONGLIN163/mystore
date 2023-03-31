@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Sofa extends Model
 {
     use HasFactory;
+
+    protected $fillable=['name','brand','year_made'];
 }

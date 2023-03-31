@@ -20,19 +20,19 @@ class SofaFormRequest extends FormRequest
      */
     public function rules(): array
     {
+        echo 1;
         return [
-            'sofa-name'=> 'required',
+            'name'=> 'required',
             'brand'=> 'required',
-            'year'=> ['required', 'integer']
+            'year_made'=> ['required', 'integer']
         ];
     }
 
     protected function prepareForValidation(){
         $this->merge([
-            //'sofa-name'=> strip_tags($this->sofa-name),
-            'sofa-name'=> strip_tags($this['sofa-name']),
+            'name'=> strip_tags($this->name),
             'brand'=> strip_tags($this->brand),
-            'year'=> strip_tags($this->year)
+            'year_made'=> strip_tags($this['year_made'])
         ]);
     }
 }
